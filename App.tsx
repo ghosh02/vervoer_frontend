@@ -6,113 +6,64 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Home from './pages/Home.jsx';
+import Login from './pages/Login';
+import ForgotPassword from './pages/ForgotPassword.jsx';
+import NumberVerifysuccess from './pages/NumberVerifysuccess.jsx';
+import EmailVerifySuccess from './pages/EmailVerifySuccess.jsx';
+import SignUp from './pages/SignUp.jsx';
+import Personalinfo from './pages/Personalinfo.jsx';
+import ForgotPasswordEmail from './pages/ForgotPasswordEmail.jsx';
+import EmailVerify from './pages/EmailVerify.jsx';
+import NumberVerify from './pages/NumberVerify.jsx';
+import FirstPage from './pages/FirstPage.jsx';
+import LandingPage from './pages/LandingPage.jsx';
+import Carousel from './utils/Carousel.jsx';
+import {UserProfileContext} from './context/UserProfileContext.js';
+import MyProfile from './profileFunction/Myprofile/MyProfile.jsx';
+import EditProfile from './profileFunction/Myprofile/EditProfile.jsx';
+import FareCard from './profileFunction/Farecard/FareCard.jsx';
+import AddCard from './profileFunction/Farecard/AddCard.jsx';
+import Scanner from './utils/Scanner.jsx';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
+const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <UserProfileContext>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
+          {/* <Stack.Screen name="MyProfile" component={MyProfile} /> */}
+          {/* <Stack.Screen name="EditProfile" component={EditProfile} /> */}
+          {/* <Stack.Screen name="Scanner" component={Scanner} /> */}
+          {/* <Stack.Screen name="FareCard" component={FareCard} /> */}
+          <Stack.Screen name="AddCard" component={AddCard} />
+          {/* <Stack.Screen name="Home" component={Home} /> */}
+          {/* <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Personalinfo" component={Personalinfo} />
+        <Stack.Screen name="Signup" component={SignUp} />
+        <Stack.Screen
+          name="ForgotPasswordEmail"
+          component={ForgotPasswordEmail}
+        />
+        <Stack.Screen name="NumberVerify" component={NumberVerify} />
+        <Stack.Screen
+          name="NumberVerifysuccess"
+          component={NumberVerifysuccess}
+        />
+        <Stack.Screen name="EmailVerify" component={EmailVerify} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen
+          name="EmailVerifySuccess"
+          component={EmailVerifySuccess}
+        />
+        <Stack.Screen name="FirstPage" component={FirstPage} /> */}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProfileContext>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

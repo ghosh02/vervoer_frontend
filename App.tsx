@@ -35,11 +35,11 @@ function App(): React.JSX.Element {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
-          {/* <Stack.Screen name="MyProfile" component={MyProfile} /> */}
+          <Stack.Screen name="MyProfile" component={MyProfile} />
           {/* <Stack.Screen name="EditProfile" component={EditProfile} /> */}
           {/* <Stack.Screen name="Scanner" component={Scanner} /> */}
           {/* <Stack.Screen name="FareCard" component={FareCard} /> */}
-          <Stack.Screen name="AddCard" component={AddCard} />
+          {/* <Stack.Screen name="AddCard" component={AddCard} /> */}
           {/* <Stack.Screen name="Home" component={Home} /> */}
           {/* <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Personalinfo" component={Personalinfo} />

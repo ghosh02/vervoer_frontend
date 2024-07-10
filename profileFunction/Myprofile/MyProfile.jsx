@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Dimensions,
   Image,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Navbar from '../../components/Navbar';
 import BackBtn from '../../components/BackBtn';
 import Btn from '../../components/Btn';
+import {launchCamera} from 'react-native-image-picker';
 
 const MyProfileData = [
   {id: 1, title: 'First Name', data: 'Jhon'},
@@ -22,6 +24,29 @@ const MyProfileData = [
   {id: 7, title: 'Zip Code', data: '408888'},
 ];
 const MyProfile = () => {
+  const [profilePic, setProfilePic] = useState(null);
+
+  const handleCameraLaunch = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: true,
+      maxHeight: 2000,
+      maxWidth: 2000,
+    };
+
+    launchCamera(options, handleResponse);
+  };
+
+  const handleResponse = response => {
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.error) {
+      console.log('Image picker error: ', response.error);
+    } else {
+      let imageUri = response.uri || response.assets?.[0]?.uri;
+      setProfilePic(imageUri);
+    }
+  };
   return (
     <View style={{flex: 1}}>
       <Navbar />
@@ -45,16 +70,30 @@ const MyProfile = () => {
             width: '100%',
           }}>
           <View>
-            <Image
-              source={require('../assets/profile.jpg')}
-              style={{
-                objectFit: 'cover',
-                width: 120,
-                height: 120,
-                borderRadius: 100,
-              }}
-            />
-            <View
+            {profilePic === null ? (
+              <Image
+                source={require('../../assets/profile.jpg')}
+                style={{
+                  objectFit: 'cover',
+                  width: 120,
+                  height: 120,
+                  borderRadius: 100,
+                }}
+              />
+            ) : (
+              <Image
+                source={{uri: profilePic}}
+                style={{
+                  objectFit: 'cover',
+                  width: 120,
+                  height: 120,
+                  borderRadius: 100,
+                }}
+              />
+            )}
+
+            <TouchableOpacity
+              onPress={handleCameraLaunch}
               style={{
                 position: 'absolute',
                 bottom: 0,
@@ -69,7 +108,7 @@ const MyProfile = () => {
                 borderColor: 'white',
               }}>
               <Icon name="camera" size={20} color="white" style={{}} />
-            </View>
+            </TouchableOpacity>
           </View>
           <View
             style={{

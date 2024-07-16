@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Navbar from '../../components/Navbar';
 import BackBtn from '../../components/BackBtn';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -17,6 +16,7 @@ import {
   launchImageLibrary as _launchImageLibrary,
   launchCamera as _launchCamera,
 } from 'react-native-image-picker';
+import NavMenu from '../../components/NavMenu';
 
 const AddCard = () => {
   const [cardHolderName, setCardHolderName] = useState('');
@@ -31,6 +31,7 @@ const AddCard = () => {
 
   const handleCameraLaunch = side => {
     const options = {
+      quality: 1,
       mediaType: 'photo',
       includeBase64: true,
       maxHeight: 300,
@@ -73,7 +74,7 @@ const AddCard = () => {
   };
   return (
     <View style={{flex: 1}}>
-      <Navbar />
+      <NavMenu />
       <BackBtn />
       <Text style={{color: 'black', fontSize: 20, marginLeft: 70}}>
         Add Fare card
@@ -259,6 +260,7 @@ const AddCard = () => {
 
 const styles = StyleSheet.create({
   input: {
+    color: '#000',
     width: '100%',
     borderBottomWidth: 1,
     fontSize: 16,

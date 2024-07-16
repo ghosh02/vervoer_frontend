@@ -14,7 +14,7 @@ const NumberVerifysuccess = () => {
         img={require('../assets/phone.png')}
         btnLabel="Continue"
         Press={() => {
-          navigation.navigate('EmailVerify');
+          navigation.navigate('Personalinfo');
         }}
       />
     </View>

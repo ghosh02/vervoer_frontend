@@ -86,7 +86,7 @@ const Personalinfo = () => {
             bgColor="#FF9401"
             textColor="white"
             btnLabel="Continue"
-            Press={() => navigation.navigate('Signup')}
+            Press={() => navigation.navigate('EmailVerify')}
           />
         </View>
       </View>

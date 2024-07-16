@@ -1,15 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Navbar from '../components/Navbar';
-import BackBtn from '../components/BackBtn';
+import BackBtn from '../../components/BackBtn';
+import NavMenu from '../../components/NavMenu';
 
 const EditProfile = () => {
   return (
     <View>
-      <Navbar />
+      <NavMenu />
       <View>
-        <BackBtn />
-        <Text>Fare Card</Text>
+        {/* <BackBtn />
+        <Text>Fare Card</Text> */}
       </View>
     </View>
   );

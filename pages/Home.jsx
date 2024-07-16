@@ -8,11 +8,12 @@ const Home = () => {
     <View
       style={{
         backgroundColor: '#FF9401',
+        height: '100%',
       }}>
       <View
         style={{
           backgroundColor: 'white',
-          minHeight: 780,
+          height: '100%',
           borderBottomRightRadius: 300,
         }}>
         <Image source={require('../assets/logo.png')} style={{marginTop: 10}} />

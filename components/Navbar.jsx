@@ -1,35 +1,40 @@
 import React, {useContext, useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
-// import Icon from 'react-native-vector-icons/EvilIcons';
+import Iconclose from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icons from 'react-native-vector-icons/Entypo';
 import ProfileContext from '../context/ProfileContext';
 import {useNavigation} from '@react-navigation/native';
-import Profile from './Profile';
+import Profile from './Sidebar';
 const data = [
   {id: '1', screen: 'Home', title: 'Home', icon: 'home'},
   {id: '2', screen: 'MyProfile', title: 'My Profile', icon: 'user'},
-  {id: '3', screen: 'Home', title: 'Fare Card', icon: 'credit-card'},
+  {id: '3', screen: 'FareCard', title: 'Fare Card', icon: 'credit-card'},
   {id: '4', screen: 'Home', title: 'Payment Methods', icon: 'money-check-alt'},
   {id: '5', screen: 'Home', title: 'Tips & Info', icon: 'lightbulb'},
   {id: '6', screen: 'Home', title: 'Settings', icon: 'mail-bulk'},
-  {id: '7', screen: 'Home', title: 'Contuct Us', icon: 'mail-bulk'},
-  {id: '8', screen: 'Home', title: 'Reset Password', icon: 'unlock-alt'},
-  {id: '9', screen: 'Home', title: 'Log out', icon: 'sign-out-alt'},
+  {id: '7', screen: 'ContactUs', title: 'Contuct Us', icon: 'mail-bulk'},
+  {
+    id: '8',
+    screen: 'ResetPassword',
+    title: 'Reset Password',
+    icon: 'unlock-alt',
+  },
+  {id: '9', screen: 'Login', title: 'Log out', icon: 'sign-out-alt'},
 ];
 
 const Navbar = () => {
   const {show, setShow} = useContext(ProfileContext);
+  const {profilePic} = useContext(ProfileContext);
   const navigation = useNavigation();
-  const [selectedId, setSelectedId] = useState('');
   const [count, setCount] = useState(15);
   const handlePress = (id, screen) => {
     setSelectedId(id);
     navigation.navigate(screen);
   };
   return (
-    <View style={{}}>
-      <View
+    <>
+      {/* <View
         display={show ? 'block' : 'none'}
         style={{
           width: '80%',
@@ -37,17 +42,15 @@ const Navbar = () => {
           backgroundColor: '#ccc',
           position: 'relative',
           zIndex: 10,
-          // borderTopRightRadius: 26,
           shadowColor: '#000',
-          elevation: 50,
-          // backgroundColor: 'green',
+          elevation: 5,
         }}>
         <TouchableOpacity
           onPress={() => {
             setShow(!show);
           }}>
-          <Icon
-            name="window-close"
+          <Iconclose
+            name="close"
             size={25}
             color="#FF9401"
             style={{position: 'absolute', right: 10, top: 4}}
@@ -94,7 +97,7 @@ const Navbar = () => {
             </TouchableOpacity>
           ))}
         </View>
-      </View>
+      </View> */}
       <View style={styles.body}>
         <View
           style={{
@@ -108,16 +111,32 @@ const Navbar = () => {
             onPress={() => {
               setShow(!show);
             }}>
-            <Image
-              source={require('../assets/profile.jpg')}
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 50,
-              }}
-            />
+            {profilePic === null ? (
+              <Image
+                source={require('../assets/profile.jpg')}
+                style={{
+                  objectFit: 'cover',
+                  width: 40,
+                  height: 40,
+                  borderRadius: 100,
+                }}
+              />
+            ) : (
+              <Image
+                source={{uri: profilePic}}
+                style={{
+                  objectFit: 'cover',
+                  width: 40,
+                  height: 40,
+                  borderRadius: 100,
+                }}
+              />
+            )}
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('LandingPage');
+            }}>
             <Image
               source={require('../assets/fulllogo.png')}
               style={{
@@ -136,13 +155,14 @@ const Navbar = () => {
             alignItems: 'center',
             paddingTop: 10,
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SearchPage')}>
             <Icon name="search" size={22} color="#000" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Wallet')}>
             <Icons name="wallet" size={32} color="#444" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('NotificationPage')}>
             <Icon name="bell" size={25} color="#000" />
             <Text
               display={count > 0 ? 'block' : 'none'}
@@ -163,7 +183,7 @@ const Navbar = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </>
   );
 };
 
@@ -177,7 +197,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
     borderBottomLeftRadius: 25,
     shadowColor: '#000',
-    elevation: 40,
+    elevation: 5,
     marginBottom: 14,
   },
 });

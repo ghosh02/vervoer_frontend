@@ -12,7 +12,7 @@ const EmailVerifySuccess = ({navigation}) => {
         title2="Successfully"
         img={require('../assets/emailid.png')}
         btnLabel="Continue"
-        Press={() => navigation.navigate('FirstPage')}
+        Press={() => navigation.navigate('LandingPage')}
       />
     </View>
   );

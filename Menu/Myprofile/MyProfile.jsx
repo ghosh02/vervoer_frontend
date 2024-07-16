@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -9,10 +9,11 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Navbar from '../../components/Navbar';
 import BackBtn from '../../components/BackBtn';
 import Btn from '../../components/Btn';
 import {launchCamera} from 'react-native-image-picker';
+import NavMenu from '../../components/NavMenu';
+import ProfileContext from '../../context/ProfileContext';
 
 const MyProfileData = [
   {id: 1, title: 'First Name', data: 'Jhon'},
@@ -23,17 +24,18 @@ const MyProfileData = [
   {id: 6, title: 'State', data: 'New York'},
   {id: 7, title: 'Zip Code', data: '408888'},
 ];
-const MyProfile = () => {
-  const [profilePic, setProfilePic] = useState(null);
-
+const MyProfile = ({navigation}) => {
+  // const [profilePic, setProfilePic] = useState(null);
+  const {profilePic, setProfilePic} = useContext(ProfileContext);
   const handleCameraLaunch = () => {
     const options = {
       mediaType: 'photo',
       includeBase64: true,
-      maxHeight: 2000,
-      maxWidth: 2000,
+      cameraType: 'front',
+      maxHeight: 200,
+      maxWidth: 300,
+      quality: 1,
     };
-
     launchCamera(options, handleResponse);
   };
 
@@ -49,7 +51,7 @@ const MyProfile = () => {
   };
   return (
     <View style={{flex: 1}}>
-      <Navbar />
+      <NavMenu />
       <View style={{display: 'flex', flexDirection: 'row'}}>
         <BackBtn />
         <Text style={{marginLeft: 70, fontSize: 20, color: 'black'}}>
@@ -93,7 +95,9 @@ const MyProfile = () => {
             )}
 
             <TouchableOpacity
-              onPress={handleCameraLaunch}
+              onPress={() => {
+                handleCameraLaunch();
+              }}
               style={{
                 position: 'absolute',
                 bottom: 0,
@@ -129,16 +133,20 @@ const MyProfile = () => {
                   width: '100%',
                   gap: 5,
                 }}>
-                <Text style={{color: 'black'}}>{item.title}</Text>
+                <Text style={{color: '#222'}}>{item.title}</Text>
                 <Text
-                  style={{borderBottomWidth: 1, fontSize: 20, color: 'black'}}>
+                  style={{borderBottomWidth: 1, fontSize: 20, color: '#666'}}>
                   {item.data}
                 </Text>
               </View>
             ))}
           </View>
         </View>
-        <Btn btnLabel="Edit Info" size={20} />
+        <Btn
+          btnLabel="Edit Info"
+          size={20}
+          Press={() => navigation.navigate('EditProfile')}
+        />
       </ScrollView>
     </View>
   );

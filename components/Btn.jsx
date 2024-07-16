@@ -7,7 +7,7 @@ const Btn = ({
   textColor = 'white',
   width = '80%',
   Press,
-  size = 25,
+  size = 20,
 }) => {
   return (
     <TouchableOpacity

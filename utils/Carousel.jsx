@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,16 +10,9 @@ import {
 
 const {width} = Dimensions.get('window');
 
-const images = [
-  {id: '1', src: require('../assets/carousel.png')},
-  {id: '2', src: require('../assets/carousel.png')},
-  {id: '3', src: require('../assets/carousel.png')},
-  {id: '4', src: require('../assets/carousel.png')},
-  // Add more images here
-];
-
-const Carousel = () => {
+const Carousel = ({data}) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const flatListRef = useRef(null);
 
   const renderItem = ({item}) => (
     <View style={styles.item}>
@@ -28,16 +21,23 @@ const Carousel = () => {
       </TouchableOpacity>
     </View>
   );
+  const onViewRef = useRef(viewableItems => {
+    const currentIndex = viewableItems.changed[0].index;
+    setActiveIndex(currentIndex);
 
-  const onViewRef = React.useRef(viewableItems => {
-    setActiveIndex(viewableItems.changed[0].index);
+    if (currentIndex === data.length - 1) {
+      setTimeout(() => {
+        flatListRef.current.scrollToIndex({index: 0, animated: true});
+      }, 1000);
+    }
   });
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 50});
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={images}
+        ref={flatListRef}
+        data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         horizontal
@@ -48,7 +48,7 @@ const Carousel = () => {
         viewabilityConfig={viewConfigRef.current}
       />
       <View style={styles.indicatorContainer}>
-        {images.map((_, index) => (
+        {data.map((_, index) => (
           <View
             key={index}
             style={[
@@ -64,7 +64,7 @@ const Carousel = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -77,16 +77,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 360,
-    height: 150,
-    borderRadius: 16,
-    resizeMode: 'cover',
+    width: 340,
+    height: 120,
+    borderRadius: 14,
+    objectFit: 'contain',
   },
   indicatorContainer: {
     flexDirection: 'row',
     gap: 10,
-    // position: 'absolute',
-    // bottom: 10,
   },
   indicator: {
     height: 10,

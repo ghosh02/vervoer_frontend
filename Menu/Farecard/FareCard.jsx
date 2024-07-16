@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import BackBtn from '../../components/BackBtn';
-import Navbar from '../../components/Navbar';
 import Btn from '../../components/Btn';
 import {useNavigation} from '@react-navigation/native';
+import NavMenu from '../../components/NavMenu';
 
 const CardData = [
   {id: 1, title: "Card Holder's Name", data: 'Jhon Doe'},
@@ -16,7 +16,7 @@ const FareCard = () => {
   const navigation = useNavigation();
   return (
     <View style={{flex: 1}}>
-      <Navbar />
+      <NavMenu />
       <BackBtn />
       <Text style={{color: 'black', fontSize: 20, marginLeft: 70}}>
         Fare card
@@ -108,7 +108,7 @@ const FareCard = () => {
             btnLabel="Add now"
             width="40%"
             size={20}
-            Press={() => navigation.navigate('AddCard')}
+            Press={() => navigation.navigate('AddFareCard')}
           />
         </View>
       )}
@@ -119,39 +119,3 @@ const FareCard = () => {
 const styles = StyleSheet.create({});
 
 export default FareCard;
-
-{
-  /* <TextInput
-style={styles.input}
-placeholder="Card Holder's Name"
-value={cardHolderName}
-onChangeText={setCardHolderName}
-/>
-<TextInput
-style={styles.input}
-placeholder="Card Number"
-value={cardNumber}
-onChangeText={setCardNumber}
-keyboardType="numeric"
-/>
-<TextInput
-style={styles.input}
-placeholder="Expiry Date (MM/YY)"
-value={expiryDate}
-onChangeText={handleExpiryDateChange}
-keyboardType="numeric"
-maxLength={5}
-/>
-
-const [cardHolderName, setCardHolderName] = useState('');
-const [cardNumber, setCardNumber] = useState('');
-const [expiryDate, setExpiryDate] = useState('');
-
-const handleExpiryDateChange = (text) => {
-  if (text.length === 2 && !text.includes('/')) {
-    setExpiryDate(text + '/');
-  } else if (text.length <= 5) {
-    setExpiryDate(text);
-  }
-}; */
-}

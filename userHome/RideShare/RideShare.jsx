@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  ScrollView,
 } from 'react-native';
-import NavMenu from '../components/NavMenu';
+import NavMenu from '../../components/NavMenu';
 import Icon from 'react-native-vector-icons/AntDesign';
-import ToggleBtn from '../components/ToggleBtn';
+import ToggleBtn from '../../components/ToggleBtn';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Btn from '../components/Btn';
+import Btn from '../../components/Btn';
+import RideType from './RideType';
 const RideShare = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('datetime');
@@ -19,7 +21,7 @@ const RideShare = ({navigation}) => {
   const [text, setText] = useState('Date & Time');
   const [pickUp, setPickUp] = useState('');
   const [dropOff, setDropOff] = useState('');
-  const [person, setPerson] = useState(1);
+  const [person, setPerson] = useState('1');
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -32,30 +34,31 @@ const RideShare = ({navigation}) => {
       (TempDate.getMonth() + 1) +
       '/' +
       TempDate.getFullYear();
-    let ftime = TempDate.getHours() + '.' + TempDate.getMinutes();
+    let ftime = TempDate.getHours() + ':' + TempDate.getMinutes();
     setText(fdate + '  ' + '&' + '  ' + ftime);
   };
-  const showPicker = () => {
+  const showPicker = ({navigation}) => {
     setShow(true);
     setMode(prevMode => (prevMode === 'date' ? 'time' : 'date'));
   };
   return (
-    <View>
+    <View style={{flex: 1}}>
       <NavMenu />
-      <View style={{height: '100%'}}>
-        <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{zIndex: 10}}>
-            <Icon
-              name="arrowleft"
-              size={30}
-              color="#FF9401"
-              style={{zIndex: 10}}
-            />
-          </TouchableOpacity>
-          <Text style={{color: '#000', fontSize: 18}}>Book New RIde</Text>
-        </View>
+      {/* <View style={{height: '100%'}}> */}
+      <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{zIndex: 10, marginLeft: 10}}>
+          <Icon
+            name="arrowleft"
+            size={30}
+            color="#FF9401"
+            style={{zIndex: 10}}
+          />
+        </TouchableOpacity>
+        <Text style={{color: '#000', fontSize: 18}}>Book New Ride</Text>
+      </View>
+      <ScrollView>
         <View style={{alignItems: 'center', marginTop: 30}}>
           <View
             style={{
@@ -69,13 +72,17 @@ const RideShare = ({navigation}) => {
             }}>
             <ToggleBtn />
             <View
-              style={{alignItems: 'flex-start', width: '90%', marginTop: 30}}>
+              style={{
+                alignItems: 'flex-start',
+                width: '90%',
+                marginTop: 30,
+              }}>
               <Text style={styles.text}>Pickup Location</Text>
               <View style={styles.inputContainer}>
                 <View style={styles.imageContainer}>
                   <Image
                     style={styles.inputImage}
-                    source={require('../assets/user.png')}
+                    source={require('../../assets/user.png')}
                   />
                 </View>
                 <TextInput
@@ -95,7 +102,7 @@ const RideShare = ({navigation}) => {
                 <View style={styles.imageContainer}>
                   <Image
                     style={styles.inputImage}
-                    source={require('../assets/location.png')}
+                    source={require('../../assets/location.png')}
                   />
                 </View>
                 <TextInput
@@ -118,7 +125,7 @@ const RideShare = ({navigation}) => {
                   style={styles.imageContainer}>
                   <Image
                     style={styles.inputImage}
-                    source={require('../assets/date.png')}
+                    source={require('../../assets/date.png')}
                   />
                 </TouchableOpacity>
                 <Text style={[styles.inputText, {width: '70%'}]}>{text}</Text>
@@ -141,7 +148,7 @@ const RideShare = ({navigation}) => {
                 <View style={styles.imageContainer}>
                   <Image
                     style={styles.inputImage}
-                    source={require('../assets/person.png')}
+                    source={require('../../assets/person.png')}
                   />
                 </View>
                 <TextInput
@@ -155,12 +162,16 @@ const RideShare = ({navigation}) => {
               </View>
               <View
                 style={{width: '100%', alignItems: 'center', marginTop: 10}}>
-                <Btn btnLabel="Apply" width="90%" />
+                <Btn
+                  btnLabel="Apply"
+                  width="90%"
+                  Press={() => navigation.navigate(RideType)}
+                />
               </View>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

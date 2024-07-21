@@ -12,17 +12,39 @@ const images = [
   {id: '4', src: require('../assets/carousel.png')},
 ];
 const component = [
-  {id: '1', title: 'Locate Rider', src: require('../assets/rideshare.png')},
-  {id: '2', title: 'Dry Cleaning', src: require('../assets/drycleaning.png')},
-  {id: '3', title: 'Food Delivery', src: require('../assets/fooddelivery.png')},
+  {
+    id: '1',
+    screen: 'LocateDryCleaning',
+    title: 'Locate Rider',
+    src: require('../assets/rideshare.png'),
+  },
+  {
+    id: '2',
+    screen: 'LocateDryCleaning',
+    title: 'Dry Cleaning',
+    src: require('../assets/drycleaning.png'),
+  },
+  {
+    id: '3',
+    screen: 'LocateDryCleaning',
+    title: 'Food Delivery',
+    src: require('../assets/fooddelivery.png'),
+  },
   {
     id: '4',
+    screen: 'LocateDryCleaning',
     title: 'Driver Registration',
     src: require('../assets/driver.png'),
   },
-  {id: '5', title: 'Scan QR', src: require('../assets/scan.png')},
+  {
+    id: '5',
+    screen: 'LocateDryCleaning',
+    title: 'Scan QR',
+    src: require('../assets/scan.png'),
+  },
   {
     id: '6',
+    screen: 'LocateDryCleaning',
     title: ' Micro Mobility',
     src: require('../assets/micromobility.png'),
   },
@@ -57,7 +79,10 @@ const DriverHome = () => {
 
       <View style={styles.container}>
         {component.map(item => (
-          <TouchableOpacity key={item.id} style={styles.component}>
+          <TouchableOpacity
+            key={item.id}
+            style={styles.component}
+            onPress={() => navigation.navigate(item.screen)}>
             <Image source={item.src} />
             <Text style={{color: '#000', fontSize: 14, textAlign: 'center'}}>
               {item.title}

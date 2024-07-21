@@ -15,13 +15,13 @@ const images = [
 const component = [
   {
     id: '1',
-    screen: 'RideShare',
+    screen: 'RideShareHome',
     title: 'Ride Share',
     src: require('../assets/rideshare.png'),
   },
   {
     id: '2',
-    screen: 'RideShare',
+    screen: 'ParkingHome',
     title: 'Parking',
     src: require('../assets/parking.png'),
   },

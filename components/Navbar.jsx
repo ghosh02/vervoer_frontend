@@ -1,27 +1,9 @@
 import React, {useContext, useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
-import Iconclose from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icons from 'react-native-vector-icons/Entypo';
 import ProfileContext from '../context/ProfileContext';
 import {useNavigation} from '@react-navigation/native';
-import Profile from './Sidebar';
-const data = [
-  {id: '1', screen: 'Home', title: 'Home', icon: 'home'},
-  {id: '2', screen: 'MyProfile', title: 'My Profile', icon: 'user'},
-  {id: '3', screen: 'FareCard', title: 'Fare Card', icon: 'credit-card'},
-  {id: '4', screen: 'Home', title: 'Payment Methods', icon: 'money-check-alt'},
-  {id: '5', screen: 'Home', title: 'Tips & Info', icon: 'lightbulb'},
-  {id: '6', screen: 'Home', title: 'Settings', icon: 'mail-bulk'},
-  {id: '7', screen: 'ContactUs', title: 'Contuct Us', icon: 'mail-bulk'},
-  {
-    id: '8',
-    screen: 'ResetPassword',
-    title: 'Reset Password',
-    icon: 'unlock-alt',
-  },
-  {id: '9', screen: 'Login', title: 'Log out', icon: 'sign-out-alt'},
-];
 
 const Navbar = () => {
   const {show, setShow} = useContext(ProfileContext);

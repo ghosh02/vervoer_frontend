@@ -46,8 +46,26 @@ import WithdrawSuccess from './Menu/Wallet/WithdrawSuccess.jsx';
 import UserHome from './HomeSection/UserHome.jsx';
 import MarchantHome from './HomeSection/MarchantHome.jsx';
 import DriverHome from './HomeSection/DriverHome.jsx';
-import RideShare from './userHome/RideShare.jsx';
+import RideShare from './userHome/RideShare/RideShare.jsx';
 import DateTimePick from './components/DateTimePick.jsx';
+import RideType from './userHome/RideShare/RideType.jsx';
+import BookRide from './userHome/RideShare/BookRide.jsx';
+import RideShareHome from './userHome/RideShare/RideShareHome.jsx';
+import RideDetails from './userHome/RideShare/RideDetails.jsx';
+import CancelRide from './userHome/RideShare/CancelRide.jsx';
+import CancelBookingUser from './userHome/RideShare/CancelBookingUser.jsx';
+import CancelBookingDriver from './userHome/RideShare/CancelBookingDriver.jsx';
+import RideHistory from './userHome/History/RideHistory.jsx';
+import LiveSession from './userHome/LiveSession/LiveSession.jsx';
+import SessionSummary from './userHome/LiveSession/SessionSummary.jsx';
+import EndSession from './userHome/LiveSession/EndSession.jsx';
+import LocateDryCleaning from './DriverHome/LocateDryCleaning.jsx';
+import RideShareVideo from './userHome/RideShare/RideShareVideo.jsx';
+import ParkingHome from './userHome/Parking/ParkingHome.jsx';
+import BookParking from './userHome/Parking/BookParking.jsx';
+import AddParkingLocation from './userHome/Parking/AddParkingLocation.jsx';
+import PickParking from './userHome/Parking/PickParking.jsx';
+import ParkingDetail from './userHome/Parking/ParkingDetail.jsx';
 
 const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
@@ -55,6 +73,10 @@ function App(): React.JSX.Element {
     <UserProfileContext>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen
+            name="CancelBookingDriver"
+            component={CancelBookingDriver}
+          /> */}
           {/* <Stack.Screen name="DateTimePick" component={DateTimePick} /> */}
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
@@ -101,9 +123,36 @@ function App(): React.JSX.Element {
           <Stack.Screen name="WithdrawSummary" component={WithdrawSummary} />
           <Stack.Screen name="WithdrawSuccess" component={WithdrawSuccess} />
           <Stack.Screen name="UserHome" component={UserHome} />
+          <Stack.Screen name="RideShareHome" component={RideShareHome} />
           <Stack.Screen name="RideShare" component={RideShare} />
+          <Stack.Screen name="RideType" component={RideType} />
+          <Stack.Screen name="BookRide" component={BookRide} />
+          <Stack.Screen name="RideDetails" component={RideDetails} />
+          <Stack.Screen name="CancelRide" component={CancelRide} />
+          <Stack.Screen
+            name="CancelBookingUser"
+            component={CancelBookingUser}
+          />
+          <Stack.Screen name="RideHistory" component={RideHistory} />
+          <Stack.Screen name="LiveSession" component={LiveSession} />
+          <Stack.Screen name="SessionSummary" component={SessionSummary} />
+          <Stack.Screen name="EndSession" component={EndSession} />
+          <Stack.Screen name="RideShareVideo" component={RideShareVideo} />
+          <Stack.Screen name="ParkingHome" component={ParkingHome} />
+          <Stack.Screen name="BookParking" component={BookParking} />
+          <Stack.Screen
+            name="AddParkingLocation"
+            component={AddParkingLocation}
+          />
+          <Stack.Screen name="PickParking" component={PickParking} />
+          <Stack.Screen name="ParkingDetail" component={ParkingDetail} />
+
           <Stack.Screen name="MarchantHome" component={MarchantHome} />
           <Stack.Screen name="DriverHome" component={DriverHome} />
+          <Stack.Screen
+            name="LocateDryCleaning"
+            component={LocateDryCleaning}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProfileContext>

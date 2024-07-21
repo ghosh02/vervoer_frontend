@@ -31,7 +31,7 @@ const ToggleBtn = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 300,
+    width: 250,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',

@@ -27,14 +27,6 @@ const DateTimePick = () => {
     setShow(true);
     setMode(currentMode);
   };
-
-  //   const showDatepicker = () => {
-  //     showMode('date');
-  //   };
-
-  //   const showTimepicker = () => {
-  //     showMode('time');
-  //   };
   const showPicker = () => {
     setShow(true);
     setMode(prevMode => (prevMode === 'date' ? 'time' : 'date'));
@@ -62,7 +54,6 @@ const DateTimePick = () => {
         />
       )}
       <Text>Selected Date: {text}</Text>
-      {/* <Text>Selected Time: {date.toTimeString()}</Text> */}
     </View>
   );
 };

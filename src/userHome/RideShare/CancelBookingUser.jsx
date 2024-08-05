@@ -1,8 +1,9 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import NavMenu from '../../components/NavMenu';
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import Btn from '../../components/Btn';
+import NavMenu from '../../components/NavMenu';
 
 const CancelBookingUser = ({navigation}) => {
   return (

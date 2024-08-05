@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/Entypo';
-import NavMenu from '../../components/NavMenu';
 import Btn from '../../components/Btn';
+import NavMenu from '../../components/NavMenu';
 
 const EndSession = ({navigation}) => {
   const [text, setText] = useState('');

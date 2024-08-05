@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 import NavMenu from '../../components/NavMenu';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import ToggleBtn from '../../components/ToggleBtn';
+// import ToggleBtn from '../../components/ToggleBtn';
 
 const component = [
   {

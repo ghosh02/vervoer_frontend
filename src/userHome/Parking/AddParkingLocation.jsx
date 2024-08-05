@@ -9,11 +9,11 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import NavMenu from '../../components/NavMenu';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Btn from '../../components/Btn';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Dropdown} from 'react-native-element-dropdown';
+import NavMenu from '../../components/NavMenu';
 
 const AddParkingLocation = ({navigation}) => {
   const [date, setDate] = useState(new Date());

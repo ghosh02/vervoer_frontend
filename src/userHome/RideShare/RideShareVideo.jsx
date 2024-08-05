@@ -11,7 +11,6 @@ import {
 import VideoCall from '../../utils/VideoCall';
 import NavMenu from '../../components/NavMenu';
 import Icon from 'react-native-vector-icons/AntDesign';
-// import VideoCall from './VideoCall';
 
 const {width, height} = Dimensions.get('window');
 

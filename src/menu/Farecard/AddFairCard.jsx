@@ -18,7 +18,7 @@ import {
 } from 'react-native-image-picker';
 import NavMenu from '../../components/NavMenu';
 
-const AddCard = () => {
+const AddFairCard = () => {
   const [cardHolderName, setCardHolderName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
@@ -295,4 +295,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddCard;
+export default AddFairCard;

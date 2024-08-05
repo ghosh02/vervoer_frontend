@@ -2,8 +2,8 @@ import React, {useContext, useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icons from 'react-native-vector-icons/Entypo';
-import ProfileContext from '../context/ProfileContext';
 import {useNavigation} from '@react-navigation/native';
+import ProfileContext from '../context/ProfileContext';
 
 const Navbar = () => {
   const {show, setShow} = useContext(ProfileContext);

@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import NavMenu from '../../components/NavMenu';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Ico from 'react-native-vector-icons/FontAwesome5';
 import ToggleBtn from '../../components/ToggleBtn';
 import Btn from '../../components/Btn';
+import NavMenu from '../../components/NavMenu';
 
 const rideType = [
   {

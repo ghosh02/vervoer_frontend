@@ -7,6 +7,7 @@ import {
   View,
   Image,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import NavMenu from '../../components/NavMenu';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -64,6 +65,7 @@ const AddParkingLocation = ({navigation}) => {
           style={{
             flex: 1,
             width: '100%',
+            // height: 300,
             // backgroundColor: 'red',
           }}></View>
 
@@ -94,109 +96,115 @@ const AddParkingLocation = ({navigation}) => {
         </View>
       </View>
       <View style={styles.detailcontainer}>
-        <Text style={styles.text}>Location</Text>
-        <View style={styles.inputContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/user.png')}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          <Text style={styles.text}>Location</Text>
+          <View style={styles.inputContainer}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={require('../../assets/user.png')}
+              />
+            </View>
+            <TextInput
+              placeholder="Location"
+              placeholderTextColor="#666"
+              style={styles.inputText}
+              onChange={() => {
+                setLocation(location);
+              }}
             />
           </View>
-          <TextInput
-            placeholder="Location"
-            placeholderTextColor="#666"
-            style={styles.inputText}
-            onChange={() => {
-              setLocation(location);
-            }}
-          />
-        </View>
-        <TouchableOpacity>
-          <Text style={{color: '#FF9401', paddingVertical: 3}}>
-            Use curent location
-          </Text>
-        </TouchableOpacity>
-        <Text style={styles.text}>When</Text>
-        <View style={styles.inputContainer}>
-          <TouchableOpacity onPress={showPicker} style={styles.imageContainer}>
-            <Image
-              style={styles.inputImage}
-              source={require('../../assets/date.png')}
-            />
+          <TouchableOpacity>
+            <Text style={{color: '#FF9401', paddingVertical: 3}}>
+              Use curent location
+            </Text>
           </TouchableOpacity>
-          <Text style={styles.inputText}>{text}</Text>
-        </View>
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-        <Text style={styles.text}>Duration</Text>
-        <View style={styles.dropdownContainer}>
-          <View style={[styles.imageContainer, {marginRight: 10}]}>
-            <Image
-              style={styles.inputImage}
-              source={require('../../assets/date.png')}
+          <Text style={styles.text}>When</Text>
+          <View style={styles.inputContainer}>
+            <TouchableOpacity
+              onPress={showPicker}
+              style={styles.imageContainer}>
+              <Image
+                style={styles.inputImage}
+                source={require('../../assets/date.png')}
+              />
+            </TouchableOpacity>
+            <Text style={styles.inputText}>{text}</Text>
+          </View>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )}
+          <Text style={styles.text}>Duration</Text>
+          <View style={styles.dropdownContainer}>
+            <View style={[styles.imageContainer, {marginRight: 10}]}>
+              <Image
+                style={styles.inputImage}
+                source={require('../../assets/date.png')}
+              />
+            </View>
+            <View style={styles.dropdown}>
+              <Dropdown
+                data={days}
+                labelField="label"
+                valueField="value"
+                placeholder="0"
+                placeholderStyle={{color: 'black'}}
+                selectedTextStyle={{color: 'black'}}
+                itemTextStyle={{color: 'black'}}
+                value={selectedDay}
+                onChange={item => setSelectedDay(item.value)}
+                style={styles.dropdownInput}
+              />
+              <Text style={styles.dropdownLabel}>Days</Text>
+            </View>
+            <View style={styles.dropdown}>
+              <Dropdown
+                data={hours}
+                labelField="label"
+                valueField="value"
+                placeholder="0"
+                placeholderStyle={{color: 'black'}}
+                selectedTextStyle={{color: 'black'}}
+                itemTextStyle={{color: 'black'}}
+                value={selectedHour}
+                onChange={item => setSelectedHour(item.value)}
+                style={styles.dropdownInput}
+              />
+              <Text style={styles.dropdownLabel}>Hour</Text>
+            </View>
+            <View style={styles.dropdown}>
+              <Dropdown
+                data={minutes}
+                labelField="label"
+                valueField="value"
+                placeholder="0"
+                placeholderStyle={{color: 'black'}}
+                selectedTextStyle={{color: 'black'}}
+                itemTextStyle={{color: 'black'}}
+                value={selectedMinute}
+                onChange={item => setSelectedMinute(item.value)}
+                style={styles.dropdownInput}
+              />
+              <Text style={styles.dropdownLabel}>Minute</Text>
+            </View>
+          </View>
+          <View style={{alignItems: 'center', paddingTop: 10}}>
+            <Btn
+              btnLabel="Pick Parking Slot"
+              width="90%"
+              Press={() => navigation.navigate('PickParking')}
             />
           </View>
-          <View style={styles.dropdown}>
-            <Dropdown
-              data={days}
-              labelField="label"
-              valueField="value"
-              placeholder="0"
-              placeholderStyle={{color: 'black'}}
-              selectedTextStyle={{color: 'black'}}
-              itemTextStyle={{color: 'black'}}
-              value={selectedDay}
-              onChange={item => setSelectedDay(item.value)}
-              style={styles.dropdownInput}
-            />
-            <Text style={styles.dropdownLabel}>Days</Text>
-          </View>
-          <View style={styles.dropdown}>
-            <Dropdown
-              data={hours}
-              labelField="label"
-              valueField="value"
-              placeholder="0"
-              placeholderStyle={{color: 'black'}}
-              selectedTextStyle={{color: 'black'}}
-              itemTextStyle={{color: 'black'}}
-              value={selectedHour}
-              onChange={item => setSelectedHour(item.value)}
-              style={styles.dropdownInput}
-            />
-            <Text style={styles.dropdownLabel}>Hour</Text>
-          </View>
-          <View style={styles.dropdown}>
-            <Dropdown
-              data={minutes}
-              labelField="label"
-              valueField="value"
-              placeholder="0"
-              placeholderStyle={{color: 'black'}}
-              selectedTextStyle={{color: 'black'}}
-              itemTextStyle={{color: 'black'}}
-              value={selectedMinute}
-              onChange={item => setSelectedMinute(item.value)}
-              style={styles.dropdownInput}
-            />
-            <Text style={styles.dropdownLabel}>Minute</Text>
-          </View>
-        </View>
-        <View style={{alignItems: 'center', paddingTop: 10}}>
-          <Btn
-            btnLabel="Pick Parking Slot"
-            width="90%"
-            Press={() => navigation.navigate('PickParking')}
-          />
-        </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -205,11 +213,11 @@ const AddParkingLocation = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // height: '100%',
   },
   detailcontainer: {
-    position: 'absolute',
+    flex: 1,
     width: '100%',
-    bottom: 0,
     paddingVertical: 25,
     paddingHorizontal: 20,
     backgroundColor: '#fff',
@@ -278,7 +286,7 @@ const styles = StyleSheet.create({
     width: 54,
     height: 38,
     borderColor: '#777',
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 5,
   },

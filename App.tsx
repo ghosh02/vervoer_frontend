@@ -66,6 +66,7 @@ import BookParking from './userHome/Parking/BookParking.jsx';
 import AddParkingLocation from './userHome/Parking/AddParkingLocation.jsx';
 import PickParking from './userHome/Parking/PickParking.jsx';
 import ParkingDetail from './userHome/Parking/ParkingDetail.jsx';
+import ParkingSlot from './userHome/Parking/ParkingSlot.jsx';
 
 const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
@@ -140,6 +141,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="RideShareVideo" component={RideShareVideo} />
           <Stack.Screen name="ParkingHome" component={ParkingHome} />
           <Stack.Screen name="BookParking" component={BookParking} />
+          <Stack.Screen name="ParkingSlot" component={ParkingSlot} />
           <Stack.Screen
             name="AddParkingLocation"
             component={AddParkingLocation}

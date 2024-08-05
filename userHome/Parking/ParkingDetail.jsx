@@ -69,7 +69,10 @@ const ParkingDetail = ({navigation, route}) => {
         </TouchableOpacity>
         <Text style={{color: '#000', fontSize: 20}}>Parking Details</Text>
       </View>
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{marginTop: 20}}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
         <View style={{alignItems: 'center'}}>
           <Image
             source={item.image}
@@ -88,7 +91,7 @@ const ParkingDetail = ({navigation, route}) => {
               paddingVertical: 10,
               borderRadius: 14,
               flexDirection: 'row',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               backgroundColor: '#fff',
               marginVertical: 20,
             }}>
@@ -101,11 +104,11 @@ const ParkingDetail = ({navigation, route}) => {
               <View style={[styles.detail, {justifyContent: 'space-between'}]}>
                 <View style={[styles.detail, {gap: 20}]}>
                   <View style={styles.detail}>
-                    <Icons name="time-outline" size={25} color="#000" />
+                    <Icons name="time-outline" size={20} color="#000" />
                     <Text style={styles.title}>{item.distance}</Text>
                   </View>
                   <View style={styles.detail}>
-                    <Icons name="star" size={20} color="#FF9401" />
+                    <Icons name="star" size={18} color="#FF9401" />
                     <Text style={styles.title}>{item.rating}</Text>
                   </View>
                 </View>
@@ -119,6 +122,7 @@ const ParkingDetail = ({navigation, route}) => {
             <Text style={styles.text}>Parking Info</Text>
             <View
               style={{
+                width: '100%',
                 backgroundColor: '#fff',
                 padding: 10,
                 borderRadius: 14,
@@ -152,7 +156,12 @@ const ParkingDetail = ({navigation, route}) => {
                   $ {item.price}
                 </Text>
               </View>
-              <Btn btnLabel="Book Now" width="40%" />
+              <Btn
+                btnLabel="Book Now"
+                width="40%"
+                size={18}
+                Press={() => navigation.navigate('ParkingSlot')}
+              />
             </View>
           </View>
         </View>
@@ -164,8 +173,7 @@ const ParkingDetail = ({navigation, route}) => {
 const styles = StyleSheet.create({
   text: {
     color: '#000',
-    fontSize: 18,
-    // fontWeight: 500,
+    fontSize: 16,
   },
   detail: {
     flexDirection: 'row',
@@ -173,8 +181,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   title: {
-    color: '#444',
-    fontSize: 16,
+    color: '#666',
+    fontSize: 15,
   },
   getIcon: {
     height: 30,
@@ -190,7 +198,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     backgroundColor: '#fff',
-    padding: 12,
+    padding: 10,
     borderRadius: 12,
     marginVertical: 10,
   },
